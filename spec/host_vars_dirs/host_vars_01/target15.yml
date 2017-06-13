@@ -1,0 +1,13 @@
+openstack_common:
+  hostname: controller
+  is_controller: yes
+  hosts:
+    - name: controller
+      ip: 192.168.1.115
+    - name: compute
+      ip: 192.168.1.116
+  ntp_servers:
+    - '0.jp.pool.ntp.org'
+    - '1.jp.pool.ntp.org'
+  allowed_addr_for_chrony: 192.168.1.0/25
+

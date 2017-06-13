@@ -1,0 +1,28 @@
+---
+- name: reboot target
+  shell: sleep 2 && reboot
+  async: 1
+  poll: 0
+  become: yes
+
+- name: wait for ssh close
+  wait_for:
+    host: "{{ ansible_host | default(ansible_ssh_host | default(inventory_hostname)) }}"
+    port: "{{ ansible_port }}"
+    search_regex: OpenSSH
+    state: stopped
+  connection: local
+
+- name: wait for ssh open
+  wait_for:
+    host: "{{ ansible_host | default(ansible_ssh_host | default(inventory_hostname)) }}"
+    port: "{{ ansible_port }}"
+    search_regex: OpenSSH
+    state: started
+  connection: local
+
+- name: restart chronyd
+  service:
+    name: chronyd
+    state: restarted
+  become: yes

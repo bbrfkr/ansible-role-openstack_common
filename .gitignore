@@ -1,0 +1,6 @@
+spec/inventory
+spec/site.retry
+spec/host_vars
+spec/roles/**/*
+spec/dev_inventory.yml
+!**/.gitkeep

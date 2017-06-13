@@ -1,0 +1,30 @@
+---
+- name: check hostname
+  shell: uname -n
+  changed_when:
+    - reg_hostname.stdout != openstack_common.hostname
+  register: reg_hostname
+  notify:
+    - reboot target
+    - wait for ssh close
+    - wait for ssh open
+
+- block:
+  - name: change hostname
+    shell: echo {{ openstack_common.hostname }} > /etc/hostname
+    when:
+      - reg_hostname | changed
+
+  - name: add entries to /etc/hosts
+    lineinfile:
+      dest: /etc/hosts
+      line: "{{ item.ip }}   {{ item.name }}"
+    with_items:
+      "{{ openstack_common.hosts }}"
+
+  - name: disable and stopped firewalld
+    service:
+      name: firewalld
+      state: stopped
+      enabled: no
+  become: yes

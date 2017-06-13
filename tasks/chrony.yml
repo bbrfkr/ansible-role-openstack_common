@@ -1,0 +1,19 @@
+---
+- block:
+  - name: install chrony package
+    yum:
+      name: chrony
+      state: installed
+  
+  - name: put chrony config file
+    template:
+      src: chrony.conf.j2
+      dest: /etc/chrony.conf
+    notify: restart chronyd
+  
+  - name: start and enable chrony service 
+    service:
+      name: chronyd
+      state: started
+      enabled: yes
+  become: yes
