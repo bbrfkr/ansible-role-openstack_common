@@ -10,15 +10,12 @@ describe ("No updatable packagess are found") do
   end
 end
 
-describe ("openstack client package is installed") do
-  describe package("python-openstackclient") do
-    it { should be_installed }
-  end
-end
-
-describe ("openstack-selinux package is installed") do
-  describe package("openstack-selinux") do
-    it { should be_installed }
+describe ("openstack necessary packages are installed") do
+  packages = ["python-openstackclient", "openstack-selinux"]
+  packages.each do |pkg|
+    describe package(pkg) do
+      it { should be_installed }
+    end
   end
 end
 

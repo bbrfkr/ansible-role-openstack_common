@@ -13,4 +13,5 @@ file_dir = File.dirname(__FILE__)
 
 require "#{ file_dir }/network.rb"
 require "#{ file_dir }/chrony.rb"
+require "#{ file_dir }/packages.rb"
 

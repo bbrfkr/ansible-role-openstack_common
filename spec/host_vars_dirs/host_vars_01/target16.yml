@@ -8,3 +8,5 @@ openstack_common:
       ip: 192.168.1.116
   ntp_servers:
     - controller
+  exec_yum_update: no
+

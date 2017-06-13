@@ -10,4 +10,5 @@ openstack_common:
     - '0.jp.pool.ntp.org'
     - '1.jp.pool.ntp.org'
   allowed_addr_for_chrony: 192.168.1.0/25
+  exec_yum_update: yes
 

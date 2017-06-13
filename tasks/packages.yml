@@ -13,18 +13,21 @@
       - python-openstackclient
       - openstack-selinux
 
-  - name: check no updatable packages are found
-    shell: LANG=C yum update --assumeno
-    changed_when: not reg_yum_update.stdout | search("No packages marked for update")
-    failed_when: false
-    register: reg_yum_update
-    notify:
-      - reboot target
-      - wait for ssh close
-      - wait for ssh open
-    
-  - name: execute yum update
-    shell: yum update -y
+  - block:
+    - name: check no updatable packages are found
+      shell: LANG=C yum update --assumeno
+      changed_when: not reg_yum_update.stdout | search("No packages marked for update")
+      failed_when: false
+      register: reg_yum_update
+      notify:
+        - reboot target
+        - wait for ssh close
+        - wait for ssh open
+      
+    - name: execute yum update
+      shell: yum update -y
+      when:
+        - reg_yum_update | changed
     when:
-      - reg_yum_update | changed
+      - openstack_common.exec_yum_update == true
   become: yes
