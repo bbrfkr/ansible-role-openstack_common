@@ -19,7 +19,7 @@ makestep 10 3
 
 # Allow NTP client access from local network.
 #allow 192.168/16
-{% if openstack_common.is_controller %}
+{% if openstack_common.allowed_sync %}
 allow {{ openstack_common.allowed_addr_for_chrony }}
 {% endif %}
 

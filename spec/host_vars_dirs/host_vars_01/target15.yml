@@ -1,6 +1,6 @@
 openstack_common:
   hostname: controller
-  is_controller: yes
+  allowed_sync: yes
   hosts:
     - name: controller
       ip: 192.168.1.115

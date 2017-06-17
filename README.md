@@ -37,7 +37,7 @@ This role executes the following settings.
 ```
 openstack_common:
   hostname: controller                     # hostname to set
-  is_controller: yes                       # whether target is controller or not
+  allowed_sync: yes                        # whether allow for the others to sync clock from this server
   hosts:                                   # hosts entries
     - name: controller                     # name
       ip: 192.168.1.115                    # ip associated with name
