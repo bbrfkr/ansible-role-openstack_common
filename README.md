@@ -85,7 +85,19 @@ This role is tested by serverspec, then its test codes are included in repositor
                        # (absolute path or relative path from the location of Rakefile)
   sudo_pass:           # sudo password of user
 ```
-4. Run `rake`
+
+4. Modify targets ips in any files of `spec` dir
+```
+$ sed -i 's/192\.168\.1\.115/X.X.X.X/g' `find spec -type f`
+$ sed -i 's/192\.168\.1\.116/Y.Y.Y.Y/g' `find spec -type f`
+```
+
+5. Modify address Z.Z.Z.Z/ZZ allowed to sync clock by chronyd service
+```
+$ sed -i 's@192\.168\.1\.0/25@Z.Z.Z.Z/ZZ@g' `find spec -type f`
+```
+
+6. Run `rake`
 
 ## License
 MIT
