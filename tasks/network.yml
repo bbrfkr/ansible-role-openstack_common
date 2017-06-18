@@ -15,12 +15,10 @@
     when:
       - reg_hostname | changed
 
-  - name: add entries to /etc/hosts
-    lineinfile:
+  - name: set /etc/hosts
+    template:
+      src: hosts.j2
       dest: /etc/hosts
-      line: "{{ item.ip }}   {{ item.name }}"
-    with_items:
-      "{{ openstack_common.hosts }}"
 
   - name: disable and stopped firewalld
     service:
