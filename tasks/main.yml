@@ -2,4 +2,4 @@
 - include: network.yml
 - include: chrony.yml
 - include: packages.yml
-
+- meta: flush_handlers
