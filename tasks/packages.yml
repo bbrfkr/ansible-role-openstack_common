@@ -1,6 +1,6 @@
 ---
 - block:
-  - name: registered openstack ocata repository
+  - name: register openstack ocata repository
     yum:
       name: centos-release-openstack-ocata
       state: installed
