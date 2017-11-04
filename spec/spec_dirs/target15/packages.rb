@@ -1,5 +1,5 @@
 describe ("openstack ocata repository is registered") do
-  describe package("centos-release-openstack-ocata") do
+  describe package("centos-release-openstack-pike") do
     it { should be_installed }
   end
 end
@@ -11,7 +11,7 @@ describe ("No updatable packagess are found") do
 end
 
 describe ("openstack necessary packages are installed") do
-  packages = ["python-openstackclient", "openstack-selinux"]
+  packages = ["python2-openstackclient", "openstack-selinux"]
   packages.each do |pkg|
     describe package(pkg) do
       it { should be_installed }
