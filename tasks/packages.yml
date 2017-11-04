@@ -1,8 +1,8 @@
 ---
 - block:
-  - name: register openstack ocata repository
+  - name: register openstack pike repository
     yum:
-      name: centos-release-openstack-ocata
+      name: centos-release-openstack-pike
       state: installed
   
   - name: install necessary packages
