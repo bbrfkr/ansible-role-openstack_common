@@ -26,6 +26,7 @@ This role executes the following settings.
 
 ## Support OpenStack release
 * Ocata
+* Pike
 
 ## Support OS
 
