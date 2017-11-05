@@ -8,7 +8,7 @@
 - name: wait for ssh close
   wait_for:
     host: "{{ ansible_host | default(ansible_ssh_host | default(inventory_hostname)) }}"
-    port: "{{ ansible_port }}"
+    port: "{{ ansible_port | default('22') }}"
     search_regex: OpenSSH
     state: stopped
   connection: local
@@ -16,7 +16,7 @@
 - name: wait for ssh open
   wait_for:
     host: "{{ ansible_host | default(ansible_ssh_host | default(inventory_hostname)) }}"
-    port: "{{ ansible_port }}"
+    port: "{{ ansible_port | default('22') }}"
     search_regex: OpenSSH
     state: started
   connection: local
